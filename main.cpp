@@ -93,3 +93,7 @@ int main(int argc, char const *argv[]){
     return 0;
 }
 END_OF_MAIN();
+/*
+compiler use : g++ -> -std:c++11 C+
+pacman ..........................
+*/
