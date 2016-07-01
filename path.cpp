@@ -9,23 +9,20 @@
 
 using namespace std;
 
-const int n=29; // horizontal size of the map
-const int m=20; // vertical size size of the map
+const int n=29; //horizontal
+const int m=20; //vertical
 static int map[n][m];
-static int closed_nodes_map[n][m]; // map of closed (tried-out) nodes
-static int open_nodes_map[n][m]; // map of open (not-yet-tried) nodes
-static int dir_map[n][m]; // map of directions
-const int dire=4; // number of possible directions to go at any position
-// if dir==4
+static int closed_nodes_map[n][m]; 
+static int open_nodes_map[n][m];
+static int dir_map[n][m]; 
+const int dire=4;
 static int dx[dire]={1, 0, -1, 0};
 static int dy[dire]={0, 1, 0, -1};
 // if dire==8
 //static int dx[dire]={1, 1, 0, -1, -1, -1, 0, 1};
 //static int dy[dire]={0, 1, 1, 1, 0, -1, -1, -1};
 
-class node
-{
-    // current position
+class node{
     int xPos;
     int yPos;
     // total distance already travelled to reach the node
@@ -214,76 +211,3 @@ string walk_home(int **ds, int pxg, int pyg, int pxll, int pyll){
     string camino = pathFind(pxg,pyg,pxll,pyll);
     return camino;
 }
-
-/*
-int main()
-{
-    int **ds = level(0);
-
-    srand(time(NULL));
-    // create empty map
-    for(int i=0;i<m;i++){
-        for(int j=0;j<n;j++){
-            if(ds[i][j]==1) map[j][i]=1;
-            else map[j][i] = 0;
-        }
-    }
-
-    // randomly select start and finish locations
-    int xA, yA, xB, yB;
-
-    xA=1;yA=1;xB=27;yB=18;
-    //xA=n/2-1;yA=m/2+1;xB=n/2+1;yB=m/2-1;
-    //xA=n/2-1;yA=0;xB=n/2+1;yB=m-1;
-
-    cout<<"Map Size (X,Y): "<<n<<","<<m<<endl;
-    cout<<"Start: "<<xA<<","<<yA<<endl;
-    cout<<"Finish: "<<xB<<","<<yB<<endl;
-    // get the route
-    clock_t start = clock();
-    string route=pathFind(xA, yA, xB, yB);
-    if(route=="") cout<<"An empty route generated!"<<endl;
-    clock_t end = clock();
-    double time_elapsed = double(end - start);
-    cout<<"Time to calculate the route (ms): "<<time_elapsed<<endl;
-    cout<<"Route:"<<endl;
-    cout<<route<<endl<<endl;
-
-    // follow the route on the map and display it
-    if(route.length()>0)
-    {
-        int j; char c;
-        int x=xA;
-        int y=yA;
-        map[x][y]=2;
-        for(int i=0;i<route.length();i++)
-        {
-            c =route.at(i);
-            j=atoi(&c);
-            x=x+dx[j];
-            y=y+dy[j];
-            map[x][y]=3;
-        }
-        map[x][y]=4;
-
-        // display the map with the route
-        for(int y=0;y<m;y++)
-        {
-            for(int x=0;x<n;x++)
-                if(map[x][y]==0)
-                    cout<<".";
-                else if(map[x][y]==1)
-                    cout<<"_"; //obstacle
-                else if(map[x][y]==2)
-                    cout<<"S"; //start
-                else if(map[x][y]==3)
-                    cout<<"O"; //route
-                else if(map[x][y]==4)
-                    cout<<"F"; //finish
-            cout<<endl;
-        }
-    }
-
-    return(0);
-}
-*/
